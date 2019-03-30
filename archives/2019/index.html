@@ -86,7 +86,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"},"passage_end_tag":{"enabled":true}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -103,16 +103,16 @@
 
 
 
-  <meta name="description" content="this is my hexo web demo">
+  <meta name="description" content="welcome to my blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="桃乐丝在此">
 <meta property="og:url" content="mijiu.group/archives/2019/index.html">
 <meta property="og:site_name" content="桃乐丝在此">
-<meta property="og:description" content="this is my hexo web demo">
+<meta property="og:description" content="welcome to my blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="桃乐丝在此">
-<meta name="twitter:description" content="this is my hexo web demo">
+<meta name="twitter:description" content="welcome to my blog">
 
 
 
@@ -457,7 +457,7 @@
               <img class="site-author-image" itemprop="image" src="/images/38.png" alt="lee">
             
               <p class="site-author-name" itemprop="name">lee</p>
-              <div class="site-description motion-element" itemprop="description">this is my hexo web demo</div>
+              <div class="site-description motion-element" itemprop="description">welcome to my blog</div>
           </div>
 
           
@@ -546,7 +546,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -556,7 +557,11 @@
 
   
 </div>
-
+  <div class="powered-by">
+		<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+			本站访客数:<span id="busuanzi_value_site_uv"></span>
+		</span>
+	</div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
