@@ -111,10 +111,12 @@
 <meta property="og:site_name" content="桃乐丝在此">
 <meta property="og:description" content="Hexo简介Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。先安装nodejs,windows系统的百度下载安装包安装nodejs,linux: 12sudo apt-get install nodejssudo apt-get install npm 检查安装是否成功： 12node -vnpm">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-31T14:22:56.300Z">
+<meta property="og:image" content="/imgs/a.png">
+<meta property="og:updated_time" content="2019-04-01T14:35:39.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用hexo搭建个人博客">
 <meta name="twitter:description" content="Hexo简介Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。先安装nodejs,windows系统的百度下载安装包安装nodejs,linux: 12sudo apt-get install nodejssudo apt-get install npm 检查安装是否成功： 12node -vnpm">
+<meta name="twitter:image" content="/imgs/a.png">
 
 
 
@@ -397,12 +399,24 @@
                 
               
 
-              <time title="Created: 2019-03-31 21:15:40 / Modified: 22:22:56" itemprop="dateCreated datePublished" datetime="2019-03-31T21:15:40+08:00">2019-03-31</time>
+              <time title="Created: 2019-03-31 21:15:40" itemprop="dateCreated datePublished" datetime="2019-03-31T21:15:40+08:00">2019-03-31</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-01 22:35:39" itemprop="dateModified" datetime="2019-04-01T22:35:39+08:00">2019-04-01</time>
               
             
           </span>
@@ -461,7 +475,7 @@
 <p>教程分三个部分:</p>
 <ul>
 <li>第一部分：hexo的初级搭建以及常见错误的解决方法</li>
-<li>第二部分：hexo的基本配置，更换主题，实现多终端工作，以及在coding page部署实现国内外分流</li>
+<li>第二部分：hexo的基本配置，更换主题，以及相关美化</li>
 <li>第三部分：hexo添加各种功能，包括搜索的SEO，阅读量统计，访问量统计和评论系统等</li>
 </ul>
 <h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h2><p>hexo的初级搭建还有部署到github page上，以及个人域名的绑定。</p>
@@ -502,6 +516,10 @@
 <h6 id="2-端口已被占用"><a href="#2-端口已被占用" class="headerlink" title="2.端口已被占用"></a>2.端口已被占用</h6><p>解决方法：更换端口　<strong>hexo s -pid </strong>pid为需要更换成其他的端口</p>
 <h6 id="3-YAMLException-incomplete-explicit-mapping-pair-a-key-node-is-missed-or-followed-by-a-non-tabulated-empty-line-at-line-x-column-y"><a href="#3-YAMLException-incomplete-explicit-mapping-pair-a-key-node-is-missed-or-followed-by-a-non-tabulated-empty-line-at-line-x-column-y" class="headerlink" title="3 YAMLException: incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line x ,column y"></a>3 YAMLException: incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line x ,column y</h6><p>解决方案：</p>
 <p>（1）出现这种情况，一般都是缺少空格，在:冒号之后要有空格！检查x行y列附近的冒号，其之后是否跟了空格。<br> （2）仔细检查_config.yml文件中所有冒号后面的空格，格式很严格，必须是只有一个，半角。不管是多了还是少了都会报错，这是yml解释器所定义的语法。</p>
+<h2 id="２．主题安装"><a href="#２．主题安装" class="headerlink" title="２．主题安装"></a>２．主题安装</h2><p>hexo官网提供了很多<a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">主题</a>，不过常用的就这么几个。这里安装的时非常流行的Next主题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>下载好以后解压到博客的theme文件夹下,修改博客站点配置文件_config.yml 注意:冒号后一定要有一个空格，不要会报错。</p>
+<p><img src="/imgs/a.png" alt="a.png"></p>
 
       
     </div>
@@ -551,6 +569,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/史上最好用的rss订阅器—inoreader/" rel="prev" title="史上最好用的rss订阅器—inoreader">
+                史上最好用的rss订阅器—inoreader <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -618,7 +652,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -637,7 +671,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -656,7 +692,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -738,7 +776,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo简介"><span class="nav-number">1.</span> <span class="nav-text">Hexo简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一部分"><span class="nav-number">2.</span> <span class="nav-text">第一部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Hexo"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动hexo时常见错误："><span class="nav-number">2.2.</span> <span class="nav-text">启动hexo时常见错误：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-执行命令hexo-server，-提示找不到该指令"><span class="nav-number">2.2.0.0.1.</span> <span class="nav-text">1. 执行命令hexo server， 提示找不到该指令</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-端口已被占用"><span class="nav-number">2.2.0.0.2.</span> <span class="nav-text">2.端口已被占用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-YAMLException-incomplete-explicit-mapping-pair-a-key-node-is-missed-or-followed-by-a-non-tabulated-empty-line-at-line-x-column-y"><span class="nav-number">2.2.0.0.3.</span> <span class="nav-text">3 YAMLException: incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line x ,column y</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo简介"><span class="nav-number">1.</span> <span class="nav-text">Hexo简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一部分"><span class="nav-number">2.</span> <span class="nav-text">第一部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Hexo"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动hexo时常见错误："><span class="nav-number">2.2.</span> <span class="nav-text">启动hexo时常见错误：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-执行命令hexo-server，-提示找不到该指令"><span class="nav-number">2.2.0.0.1.</span> <span class="nav-text">1. 执行命令hexo server， 提示找不到该指令</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-端口已被占用"><span class="nav-number">2.2.0.0.2.</span> <span class="nav-text">2.端口已被占用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-YAMLException-incomplete-explicit-mapping-pair-a-key-node-is-missed-or-followed-by-a-non-tabulated-empty-line-at-line-x-column-y"><span class="nav-number">2.2.0.0.3.</span> <span class="nav-text">3 YAMLException: incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line x ,column y</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#２．主题安装"><span class="nav-number">3.</span> <span class="nav-text">２．主题安装</span></a></li></div>
             
 
           </div>
