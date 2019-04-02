@@ -353,6 +353,419 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/02/python-tcp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="welcome to my blog">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="桃乐丝在此">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/02/python-tcp/" class="post-title-link" itemprop="url">python tcp</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-02 14:59:09 / Modified: 15:17:04" itemprop="dateCreated datePublished" datetime="2019-04-02T14:59:09+08:00">2019-04-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="tcp-client-py"><a href="#tcp-client-py" class="headerlink" title="tcp_client.py"></a>tcp_client.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"><span class="comment"># 建立连接:</span></span><br><span class="line">s.connect((<span class="string">'127.0.0.1'</span>, <span class="number">10000</span>))</span><br><span class="line"><span class="comment"># 接收欢迎消息:</span></span><br><span class="line">print(s.recv(<span class="number">1024</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> [<span class="string">b'Michael'</span>, <span class="string">b'Tracy'</span>, <span class="string">b'Sarah'</span>]:</span><br><span class="line">    <span class="comment"># 发送数据:</span></span><br><span class="line">    s.send(data)</span><br><span class="line">    print(s.recv(<span class="number">1024</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line">s.send(<span class="string">b'exit'</span>)</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+<h3 id="tcp-server-py"><a href="#tcp-server-py" class="headerlink" title="tcp_server.py"></a>tcp_server.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket,os</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">s=socket.socket(socket.AF_INET,socket.SOCK_STREAM) <span class="comment">#创建连接</span></span><br><span class="line">s.bind((<span class="string">'127.0.0.1'</span>,<span class="number">10000</span>))　<span class="comment">#设置服务器端口,小于1024的端口需要权限</span></span><br><span class="line">s.listen(<span class="number">3</span>) <span class="comment">#设置连接数限制</span></span><br><span class="line">print(<span class="string">'等待连接...'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tcplink</span><span class="params">(sock, addr)</span>:</span></span><br><span class="line">    print(<span class="string">'Accept new connection from %s:%s...'</span> % addr)</span><br><span class="line">    sock.send(<span class="string">b'Welcome!'</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = sock.recv(<span class="number">1024</span>)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data <span class="keyword">or</span> data.decode(<span class="string">'utf-8'</span>) == <span class="string">'exit'</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        sock.send((<span class="string">'Hello, %s!'</span> % data.decode(<span class="string">'utf-8'</span>)).encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    sock.close()</span><br><span class="line">    print(<span class="string">'Connection from %s:%s closed.'</span> % addr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    sock ,addr=s.accept()</span><br><span class="line">    t=threading.Thread(target=tcplink,args=(sock,addr))</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><h3 id="udp-client-py"><a href="#udp-client-py" class="headerlink" title="udp_client.py"></a>udp_client.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> [<span class="string">b'Michael'</span>, <span class="string">b'Tracy'</span>, <span class="string">b'Sarah'</span>]:</span><br><span class="line">    <span class="comment"># 发送数据:</span></span><br><span class="line">    s.sendto(data, (<span class="string">'127.0.0.1'</span>, <span class="number">9999</span>))</span><br><span class="line">    <span class="comment"># 接收数据:</span></span><br><span class="line">    print(s.recv(<span class="number">1024</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+<h3 id="udp-server-py"><a href="#udp-server-py" class="headerlink" title="udp_server.py"></a>udp_server.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket,os</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 绑定端口:</span></span><br><span class="line">s.bind((<span class="string">'127.0.0.1'</span>, <span class="number">9999</span>))</span><br><span class="line">print(<span class="string">'waiting for connecting..'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="comment"># 接收数据:</span></span><br><span class="line">    data, addr = s.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'Received from %s:%s.'</span> % addr)</span><br><span class="line">    s.sendto(<span class="string">b'Hello, %s!'</span> % data, addr)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/01/日本語/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="welcome to my blog">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="桃乐丝在此">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/01/日本語/" class="post-title-link" itemprop="url">日本学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-01 23:27:22" itemprop="dateCreated datePublished" datetime="2019-04-01T23:27:22+08:00">2019-04-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-02 13:15:40" itemprop="dateModified" datetime="2019-04-02T13:15:40+08:00">2019-04-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!--あいうえお        かきくけこ        たちつてと        さしすせそ        なにぬねの-->
+<!--はひふへほ        まみむめも        やゆよ            らりるれろわを-->
+<!--ん-->
+<h2 id="日语有五个主要词类："><a href="#日语有五个主要词类：" class="headerlink" title="日语有五个主要词类："></a><a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD" target="_blank" rel="noopener">日语</a>有五个主要词类：</h2><p>名词<br>动词性名词（也称サ变名词，对应于英语动名词像“studying”、“jumping”，表示活动）<br>形容动词（な形容词）<br>动词<br>形容词（所谓的い形容词）<br>更广泛的有两类：体言（即不能活用的词，名词，包括动名词和形容动词）与用言（即能够活用的词，动词以及作为不完全变化动词的形容词）。准确地说，动名词是可以附加「する」 suru（做）的名词，而形容动词像名词，但是作定语的时候后面使用「〜な」 -na而不是「〜の」 -no。形容词（い形容词）与动词以na-i（ない）结尾的否定形式变化相同。比较「食べない」 tabe-na-i（不吃） → 「食べなかった」 tabe-na-katta（没吃）与「熱い」 atsu-i（热） → 「熱かった」 atsu-katta（曾经热）。</p>
+<h3 id="句子结构"><a href="#句子结构" class="headerlink" title="句子结构"></a>句子结构</h3><p><a href="https://zh.wikipedia.org/wiki/%E8%8B%B1%E8%AF%AD" target="_blank" rel="noopener">英语</a>和<a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%AD" target="_blank" rel="noopener">汉语</a>造句使用“I read a book”、“我读书”这样的语序，称之为<a href="https://zh.wikipedia.org/wiki/%E4%B8%BB%E8%B0%93%E5%AE%BE%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">主谓宾结构</a>，而日语造句使用“私は本を読む。”【私我は［主题标记］本书を［宾格标记］読む读。】这样的语序，称作<a href="https://zh.wikipedia.org/wiki/%E4%B8%BB%E5%AE%BE%E8%B0%93%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">主宾谓结构</a>（不过日语用宾主谓也可以，因为日语是<a href="https://zh.wikipedia.org/wiki/%E9%BB%8F%E7%9D%80%E8%AF%AD" target="_blank" rel="noopener">黏着语</a>，而非<a href="https://zh.wikipedia.org/wiki/%E5%AD%A4%E7%AB%8B%E8%AF%AD" target="_blank" rel="noopener">孤立语</a>）严格说来，英语句子必须要有动词，日语句子却可以用动词结尾也可以用形容词或者名词+助动词结尾。因此，与其说日语语句的基本结构是“S（主语subject）—V（动词verb）”，倒不如说是“S（<a href="https://zh.wikipedia.org/wiki/%E4%B8%BB%E8%AF%AD" target="_blank" rel="noopener">主语</a>）—P（<a href="https://zh.wikipedia.org/wiki/%E8%B0%93%E8%AF%AD" target="_blank" rel="noopener">谓语</a>predicate）”这一“<strong>主谓结构</strong>”更为合适。</p>
+<ul>
+<li>\1. 私は（が） 社長だ。【私我は（が）［主题（主格）标记］社長社长だ是（简体<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-61" target="_blank" rel="noopener">[注 12]</a>）。】（我是社长。）</li>
+<li>\2. 私は（が） 行く。【私我は（が）［主题（主格）标记］行く去。】（我去。）</li>
+<li>\3. 私は（が） 嬉しい。【私我は（が）［主题（主格）标记］嬉しい高兴。】（我很高兴。）</li>
+</ul>
+<p>上述句子都属于“S—P”结构（主谓结构）。在英语中它们分别成“SVC”、“SV”、“SVC”结构，因此分别称1为名词句，2为动词句，3为形容词句。可是在日语中这三种结构没有本质上的区别。因此，刚刚开始学习英语的人，可能会仿造“I am happy.”的形式造出“I am go.”这样的<a href="https://zh.wikipedia.org/wiki/%E7%97%85%E5%8F%A5" target="_blank" rel="noopener">病句</a><a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-62" target="_blank" rel="noopener">[50]</a>。</p>
+<h3 id="题述结构"><a href="#题述结构" class="headerlink" title="题述结构"></a>题述结构</h3><p>此外，日语句子中除了主谓结构之外，还有很多句子采用“<strong>题述结构</strong>”，由“题目＋叙述部分”构成。题目指的是一句话的主题（<a href="https://zh.wikipedia.org/wiki/%E4%B8%89%E4%B8%8A%E7%AB%A0" target="_blank" rel="noopener">三上章</a>称其为”what we are talking about”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-A-63" target="_blank" rel="noopener">[51]</a>），和“主语”是两个不同的概念。主语多用“が”标示，是动作和作用的主体，而题目常用“は”标示，展现的是句子叙述的中心。当一个句子的题目同时也是主语的时候，题目后标示了“は”就不用再标示“が”，究其结果也就成主语后标示“は”了；而题目同时为宾语也不用再标示“を”，只用标示“は”。例如：</p>
+<ul>
+<li>\4. 象は 大きい。【象大象は［主题标记］大きい大。】（大象大。）</li>
+<li>\5. 象は 檻に入れた。【象大象は［主题标记］檻笼子に［<a href="https://zh.wikipedia.org/wiki/%E4%B8%8E%E6%A0%BC" target="_blank" rel="noopener">与格</a>标记］入れた放入了。】（把大象塞进笼子了。）</li>
+<li>\6. 象は 餌をやった。【象大象は［主题标记］餌饵食を［<a href="https://zh.wikipedia.org/wiki/%E5%AE%BE%E6%A0%BC" target="_blank" rel="noopener">宾格</a>标记］やった喂过了。】（给大象喂过食了。）</li>
+<li>\7. 象は 鼻が長い。【象大象は［主题标记］鼻鼻子が［<a href="https://zh.wikipedia.org/wiki/%E4%B8%BB%E6%A0%BC" target="_blank" rel="noopener">主格</a>标记］長い长。】（大象鼻子长。）</li>
+</ul>
+<p>之类的句子中，“象は”在每个句子里都是题目。第4句中的“象は”可以替换为“象が”，因为此句的主题兼任主语。可是，第5句以后的“象は”不能替换为“象が”。第5句可以替换为“象を”，第6句可以替换为“象に”，至于第7句则没有替换词（有人认为可以替换成“象の”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-64" target="_blank" rel="noopener">[52]</a>，相当于句子改写成“大象<strong>的</strong>鼻子长”）。这些句子里的“象は”这个题目并不表示特定的<a href="https://zh.wikipedia.org/wiki/%E6%A0%BC_(%E8%AF%AD%E6%B3%95" target="_blank" rel="noopener">格</a>)，只是表示我现在要讨论和大象相关的问题。</p>
+<p>这些句子中接续在“象は”这个题目后面的都是“叙述部分”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-65" target="_blank" rel="noopener">[注 13]</a>。</p>
+<p><a href="https://zh.wikipedia.org/w/index.php?title=%E5%A4%A7%E9%87%8E%E6%99%8B&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">大野晋</a>认为，“が”和“は”分别表示的是未知和已知。例如</p>
+<ul>
+<li>私が佐藤です（<strong>我</strong>是佐藤）</li>
+<li>私は佐藤です（我是<strong>佐藤</strong>）</li>
+</ul>
+<p>中，前者意味着“（谁是佐藤呢？）<strong>我</strong>是佐藤”（已知佐藤而不知“我”），而后者意味着“（我是什么人呢？）我是<strong>佐藤</strong>”（已知“我”而不知佐藤）。因此，日语里“何”、“どこ”、“いつ”这些疑问词总是后接“が”变为“何が”、“どこが”、“いつが”而不会变成“何は”、“どこは”、“いつは”，因为它们总是表示未知的事物。</p>
+<p>像日语这样拥有题述结构的句子的语言，称之为<a href="https://zh.wikipedia.org/wiki/%E8%AF%9D%E9%A2%98%E4%BC%98%E5%85%88%E8%AF%AD%E8%A8%80" target="_blank" rel="noopener">话题优先语言</a>。有些东亚语言，例如<a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%AD" target="_blank" rel="noopener">汉语</a>、<a href="https://zh.wikipedia.org/wiki/%E6%9C%9D%E9%B2%9C%E8%AF%AD" target="_blank" rel="noopener">朝鲜语</a>、<a href="https://zh.wikipedia.org/wiki/%E8%B6%8A%E5%8D%97%E8%AF%AD" target="_blank" rel="noopener">越南语</a>、<a href="https://zh.wikipedia.org/wiki/%E9%A9%AC%E6%9D%A5%E8%AF%AD" target="_blank" rel="noopener">马来语</a>、<a href="https://zh.wikipedia.org/wiki/%E4%BB%96%E5%8A%A0%E7%A6%84%E8%AF%AD" target="_blank" rel="noopener">他加禄语</a>，也拥有这种句式。</p>
+<h3 id="句子成分-编辑"><a href="#句子成分-编辑" class="headerlink" title="句子成分[编辑]"></a>句子成分[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=13" target="_blank" rel="noopener">编辑</a>]</h3><p>即使是认为有主语和谓语就有句子的人，也没法只用这两个要素就说明句子的结构。在主语、谓语之外，还需要加上<a href="https://zh.wikipedia.org/w/index.php?title=%E4%BF%AE%E9%A5%B0%E8%AF%AD&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">修饰语</a>等成分，才形成复杂的语句。使得句子得以成立的这些成分称作“句子成分”。</p>
+<p><a href="https://zh.wikipedia.org/w/index.php?title=%E5%AD%A6%E6%A0%A1%E8%AF%AD%E6%B3%95&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">学校语法</a><a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-69" target="_blank" rel="noopener">[注 16]</a>把句子成分分为“主语”、“谓语”、“修饰语（连用修饰语、连体修饰语）”、“接续语”、“独立语”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-70" target="_blank" rel="noopener">[注 17]</a>五种。在学校语法中，“并列语（互相并列的<a href="https://zh.wikipedia.org/w/index.php?title=%E6%96%87%E8%8A%82&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">文节</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E8%BF%9E%E6%96%87%E8%8A%82&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">连文节</a>）”（「並立語（並立の関係にある文節/<a href="https://zh.wikipedia.org/w/index.php?title=%E9%80%A3%E6%96%87%E7%AF%80&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">連文節</a>どうし）」）<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-71" target="_blank" rel="noopener">[注 18]</a>和“补语、被补语（互为补充关系的文节、连文节）”「補助語・被補助語（補助の関係にある文節/連文節どうし）」都不是句子成分，而是表达文节之间、连文节之间关系的概念，因而总是形成连文节变成上述五种成分之一。于是教科书随之采用“并列关系”、“补助关系”这样的用语（概念），而很少有教科书使用“并列语”、“补助语”的概念。此外，“连体修饰语”原则上不能单独充当成分，总是要和被修饰语在一起才能构成连文节充当句子成分。</p>
+<p>除<a href="https://zh.wikipedia.org/w/index.php?title=%E5%AD%A6%E6%A0%A1%E5%9B%BE%E4%B9%A6&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">学校图书</a>（出版社）之外的其他四家出版社的教科书中，都把能单独构成文节的成分像“主语”那样称作“╳语”，把构成连文节的成分像“主部”那样称作“╳部”。只有学校图书把文节和连文节都称作“╳语”，而把一个句子中能划分成的最大部件称之为“╳部”。</p>
+<h4 id="主语、谓语-编辑"><a href="#主语、谓语-编辑" class="headerlink" title="主语、谓语[编辑]"></a>主语、谓语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=14" target="_blank" rel="noopener">编辑</a>]</h4><p>造句子所需的基本成分。其中谓语尤为重要，在句子中起到纲举目张的作用。“雨が降る。”、“本が多い。”、“私は学生だ。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-72" target="_blank" rel="noopener">[译 1]</a>都是由主语和谓语构成的句子。有的教科书中强调谓语统合全文的作用，而把主语放在修饰语中加以解说（参见上一节<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#%E4%B8%BB%E8%AF%AD%E5%BA%9F%E6%AD%A2%E8%AE%BA" target="_blank" rel="noopener">主语废止论</a>）。</p>
+<h5 id="连用修饰语-编辑"><a href="#连用修饰语-编辑" class="headerlink" title="连用修饰语[编辑]"></a>连用修饰语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=15" target="_blank" rel="noopener">编辑</a>]</h5><p>和用言相联的修饰语（用言的意思请参照<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#%E8%87%AA%E7%AB%8B%E8%AF%AD" target="_blank" rel="noopener">自立语</a>）一节。“兄が弟に算数を教える。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-73" target="_blank" rel="noopener">[译 2]</a>一文中“弟に”、“算数を”等表示格的部分，就是和谓语动词“教える”相联的连用修饰语。此外，“算数をみっちり教える。”、“算数を熱心に教える。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-74" target="_blank" rel="noopener">[译 3]</a>等句中的“みっちり”、“熱心に”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-75" target="_blank" rel="noopener">[译 4]</a>等词也是和“教える”相联的连用修饰语。不过，如果缺乏了“弟に”、“算数を”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-76" target="_blank" rel="noopener">[译 5]</a>等词的话，整个句子就会变得不知所云，而“みっちり”、“熱心に”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-77" target="_blank" rel="noopener">[译 6]</a>等词即使缺少了，也还是个能传达信息的完整的句子。因此，有人认为前者为句子的主干，应称为<strong>补充成分</strong>，而后者应称为<strong>修饰成分</strong><a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-78" target="_blank" rel="noopener">[54]</a>。有的国语教科书里对这两者有区分。</p>
+<h5 id="连体修饰语-编辑"><a href="#连体修饰语-编辑" class="headerlink" title="连体修饰语[编辑]"></a>连体修饰语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=16" target="_blank" rel="noopener">编辑</a>]</h5><p>和体言相联的修饰语（体言的意思请参照<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#%E8%87%AA%E7%AB%8B%E8%AF%AD" target="_blank" rel="noopener">自立语</a>）一节。“私の本”、“動く歩道”、“赤い髪飾り”、“大きな瞳”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-79" target="_blank" rel="noopener">[译 7]</a>中的“私の”、“動く”、“赤い”、“大きな”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-80" target="_blank" rel="noopener">[译 8]</a>为连体修饰语。<a href="https://zh.wikipedia.org/w/index.php?title=%E9%93%83%E6%9C%A8%E9%87%8D%E4%BF%A1&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">铃木重信</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E9%93%83%E6%9C%A8%E5%BA%B7%E4%B9%8B&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">铃木康之</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E9%AB%98%E6%A1%A5%E5%A4%AA%E9%83%8E&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">高桥太郎</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E9%93%83%E6%9C%A8%E6%B3%B0&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">铃木泰</a>等人认为，连体修饰语赋予“表现事物的句子成分”以特征，是一种规定“该事物是什么样的事物”的句子成分，因而把连体修饰语称作“<strong>规定语</strong>”（或者“<strong>连体规定语</strong>”）。</p>
+<h5 id="接续语-编辑"><a href="#接续语-编辑" class="headerlink" title="接续语[编辑]"></a>接续语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=17" target="_blank" rel="noopener">编辑</a>]</h5><p>像“疲れたので、動けない。”、“買いたいが、金がない。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-81" target="_blank" rel="noopener">[译 9]</a>中的“疲れたので”、“買いたいが”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-82" target="_blank" rel="noopener">[译 10]</a>那样，和后续部分有逻辑关系的语。此外，像“今日は晴れた。だから、ピクニックに行こう。”、“君は若い。なのに、なぜ絶望するのか。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-83" target="_blank" rel="noopener">[译 11]</a>中的“だから”、“なのに”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-84" target="_blank" rel="noopener">[译 12]</a>那样连接前文和后文的成分也属于接续语。在<a href="https://zh.wikipedia.org/wiki/%E8%AF%8D%E7%B1%BB" target="_blank" rel="noopener">词类</a>中，总是用作接续语的词的<a href="https://zh.wikipedia.org/wiki/%E8%AF%8D%E6%80%A7" target="_blank" rel="noopener">词性</a>为<a href="https://zh.wikipedia.org/wiki/%E6%8E%A5%E7%BB%AD%E8%AF%8D" target="_blank" rel="noopener">接续词</a>。</p>
+<h5 id="独立语-编辑"><a href="#独立语-编辑" class="headerlink" title="独立语[编辑]"></a>独立语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=18" target="_blank" rel="noopener">编辑</a>]</h5><p>独立语像“はい、分かりました。”、“お兄さん、どこへ行くの。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-85" target="_blank" rel="noopener">[译 13]</a>中的“はい”、“お兄さん”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-86" target="_blank" rel="noopener">[译 14]</a>那样，并不和其他成分相联，也不被其他成分相联。从是否和其他词相联这一定义来看，独立语几乎都是一些表示感动、发动号召、应答、提示的语言。在<a href="https://zh.wikipedia.org/wiki/%E8%AF%8D%E7%B1%BB" target="_blank" rel="noopener">词类</a>中，总是用作独立语的词的<a href="https://zh.wikipedia.org/wiki/%E8%AF%8D%E6%80%A7" target="_blank" rel="noopener">词性</a>为<a href="https://zh.wikipedia.org/wiki/%E6%84%9F%E5%8F%B9%E8%AF%8D" target="_blank" rel="noopener">感叹词</a>。</p>
+<h5 id="并列语-编辑"><a href="#并列语-编辑" class="headerlink" title="并列语[编辑]"></a>并列语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=19" target="_blank" rel="noopener">编辑</a>]</h5><p>在“ミカンとリンゴを買う。”、“北海道の冬は冷たくて厳しい。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-87" target="_blank" rel="noopener">[译 15]</a>中，“ミカンとリンゴを”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-88" target="_blank" rel="noopener">[译 16]</a>和“冷たくて厳しい。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-89" target="_blank" rel="noopener">[译 17]</a>均是由两个互相并列的成分构成。作为一个整体，“ミカンとリンゴを”相当于连用修饰部，“冷たくて厳しい。”相当于谓部。</p>
+<h4 id="宾语和补语-编辑"><a href="#宾语和补语-编辑" class="headerlink" title="宾语和补语[编辑]"></a>宾语和补语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=20" target="_blank" rel="noopener">编辑</a>]</h4><p>现在通行的学校语法中并无相当于英语语法中“宾语”、“补语”的概念。英语语法把“I read a book.”中的“a book”看作宾语，为主谓宾结构的一部分；此外，“I go to the library.”中的“the library”则是看作和<a href="https://zh.wikipedia.org/wiki/%E5%89%8D%E7%BD%AE%E8%A9%9E" target="_blank" rel="noopener">前置词</a>一并加入的修饰语。与之相对，日语则是像</p>
+<ul>
+<li>私は本を読む。（我读书。）</li>
+<li>私は図書館へ行く。（我去图书馆。）</li>
+</ul>
+<p>这样，不论是“本を”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-90" target="_blank" rel="noopener">[译 18]</a>还是“図書館へ”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-91" target="_blank" rel="noopener">[译 19]</a>，都是“名词＋格助词”的结构，没区别，因而都被视作“连用修饰语”这个句子成分。按照学校语法，“私は本を読む。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-92" target="_blank" rel="noopener">[译 20]</a>不用“主语＋宾语＋动词”（SOV）句型解释，而用“主语＋修饰语＋谓语”来解释。</p>
+<h5 id="对象语（补语）-编辑"><a href="#对象语（补语）-编辑" class="headerlink" title="对象语（补语）[编辑]"></a>对象语（补语）[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=21" target="_blank" rel="noopener">编辑</a>]</h5><p><a href="https://zh.wikipedia.org/w/index.php?title=%E9%93%83%E6%9C%A8%E9%87%8D%E5%B9%B8&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">铃木重幸</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E9%93%83%E6%9C%A8%E5%BA%B7%E4%B9%8B&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">铃木康之</a>等人认为，“连用修饰语”中属于“宾语”的语，是说明谓语所要描述的动作和状态所不可或缺的“对象语”（Object）<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-93" target="_blank" rel="noopener">[55]</a>。承认它属于句子的基本成分。<a href="https://zh.wikipedia.org/w/index.php?title=%E9%AB%98%E6%A1%A5%E5%A4%AA%E9%83%8E&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">高桥太郎</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E9%93%83%E6%9C%A8%E6%B3%B0&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">铃木泰</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E5%B7%A5%E8%97%A4%E7%9C%9F%E7%94%B1%E7%BE%8E&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">工藤真由美</a>等则是把相当于“对象语”的成分称作“补语”，认为它对于主语和谓语所描写的事情起到补充说明的效果。</p>
+<h5 id="状况语-编辑"><a href="#状况语-编辑" class="headerlink" title="状况语[编辑]"></a>状况语[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=22" target="_blank" rel="noopener">编辑</a>]</h5><p>像“明日、町で祭がある。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-94" target="_blank" rel="noopener">[译 21]</a>“雨だから、傘を持とう。”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-95" target="_blank" rel="noopener">[译 22]</a>中的“明日”、“町で”、“雨だから”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-96" target="_blank" rel="noopener">[译 23]</a>那样，叙述事件发生的时间、场所、原因、目的的句子成分叫做“状况语”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-97" target="_blank" rel="noopener">[56]</a>。在学校语法中属于“连用修饰语”，但是，“（连用）修饰语”表达的是谓语的内部属性，而“状况语”表达的是外部状况，起的是锦上添花的作用。汉语有“<a href="https://zh.wikipedia.org/wiki/%E7%8B%80%E8%AA%9E" target="_blank" rel="noopener">状语</a>”的概念<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-98" target="_blank" rel="noopener">[注 19]</a>，但是内涵和外延与日语的“状况语”不完全一致，日语的“修饰语”在汉语里也是“状语”。</p>
+<h4 id="修饰语的特征-编辑"><a href="#修饰语的特征-编辑" class="headerlink" title="修饰语的特征[编辑]"></a>修饰语的特征[<a href="https://zh.wikipedia.org/w/index.php?title=%E6%97%A5%E8%AF%AD&amp;action=edit&amp;section=23" target="_blank" rel="noopener">编辑</a>]</h4><p>日语的修饰语总在被修饰语的前面。“ぐんぐん進む”、“白い雲”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-99" target="_blank" rel="noopener">[译 24]</a>中的“ぐんぐん”、“白い”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-100" target="_blank" rel="noopener">[译 25]</a>分别是“進む”、“雲”<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-101" target="_blank" rel="noopener">[译 26]</a>的修饰语。日语的修饰语可以变得很长，不过还是前置，例如：</p>
+<blockquote>
+<p>ゆく秋の大和の国の薬師寺の塔の上なるひとひらの雲<br>（硬译以展现日语句子结构：到了秋天的大和国的药师寺塔上的一片云）— 佐佐木信纲</p>
+</blockquote>
+<p>这一<a href="https://zh.wikipedia.org/wiki/%E7%9F%AD%E6%AD%8C" target="_blank" rel="noopener">短歌</a>中，从句子开头到“雲”之前的一大串内容都是“雲”的修饰语。</p>
+<p>在法律条文和译文中，常常出现主语和谓语之间夹着一个长长的修饰语，让人很难一下子看清文意。例如，《<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E5%9B%BD%E5%AE%AA%E6%B3%95" target="_blank" rel="noopener">日本国宪法</a>》（原文为<a href="https://zh.wikipedia.org/wiki/%E8%88%8A%E5%AD%97%E9%AB%94" target="_blank" rel="noopener">旧字</a><a href="https://zh.wikipedia.org/wiki/%E6%AD%B7%E5%8F%B2%E5%81%87%E5%90%8D%E9%81%A3" target="_blank" rel="noopener">旧假名</a>，此处保留原表记）中有这样一节：</p>
+<ul>
+<li>日语原文：<strong>日本國民</strong>は、<em>正義と秩序を基調とする國際平和</em>を誠實に希求し、國權の發動たる戰爭と、武力による威嚇又は武力の行使は、國際紛爭を解決する手段としては、永久にこれを<strong>放棄する</strong>。</li>
+<li>中文翻译：<strong>日本国民</strong>衷心谋求<em>基于正义与秩序的国际和平</em>，永远<strong>放弃</strong>以国权发动的战争、武力威胁或武力行使作为解决国际争端的手段。</li>
+<li>英文翻译：Aspiring sincerely to <em>an international peace based on justice and order</em>, the <strong>Japanese people</strong> forever <strong>renounce</strong> war as a sovereign right of the nation and the threat or use of force as means of settling international disputes.</li>
+</ul>
+<p>──《日本国宪法》第九条第1款 在作为主语（题目）的“日本國民”和谓语“放棄する”之间，隔了好长的一个修饰语；如果不是读惯这种句子的人，可能一下子读不清楚。这与英语the Japanese people后面马上接renounce正好形成对照。 不过，修饰语后置的英语也有时候会出现修饰语弄得句子很难懂的例子，西方人称作”Garden path sentence”（<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AA%9E" target="_blank" rel="noopener">日语</a>：袋小路文，<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">中文</a>：<a href="https://zh.wikipedia.org/wiki/%E5%9C%92%E5%BE%91%E5%8F%A5%E5%9E%8B" target="_blank" rel="noopener">园径句型</a><a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD#cite_note-HigherEduPress2-102" target="_blank" rel="noopener">[57]</a>）：</p>
+<ul>
+<li>英文：The <strong>horse</strong> raced past the barn fell.</li>
+<li>日译：納屋のそばを走らされた<strong>馬が</strong>倒れた。</li>
+<li>中译：跑过牲口棚的<strong>马</strong>倒了下去。（更好的翻译：马跑过牲口棚，便倒了下去。）</li>
+</ul>
+<p>这个日语句子中和“马”相联的连体修饰语“納屋のそばを走らされた”在“马”之前，因此不容易误解，但是英语里修饰“The horse”的“raced past the barn”在“The horse”后面，这导致误解──英文版也可以读作“马跑过了倒塌的牲口棚。”</p>
+<blockquote>
+<p>摘抄自：<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E6%97%A5%E8%AF%AD</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/01/史上最好用的rss订阅器—inoreader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -398,7 +811,7 @@
                 
               
 
-              <time title="Created: 2019-04-01 22:38:56 / Modified: 23:13:25" itemprop="dateCreated datePublished" datetime="2019-04-01T22:38:56+08:00">2019-04-01</time>
+              <time title="Created: 2019-04-01 22:38:56 / Modified: 23:17:05" itemprop="dateCreated datePublished" datetime="2019-04-01T22:38:56+08:00">2019-04-01</time>
             
 
             
@@ -459,8 +872,7 @@
           
             <p><a href="https://www.inoreader.com/" target="_blank" rel="noopener">inoreader</a>是保加利亚一款基于网络内容和云服务的<a href="https://zh.wikipedia.org/wiki/RSS" target="_blank" rel="noopener">RSS</a><a href="https://zh.wikipedia.org/wiki/%E8%81%9A%E5%90%88%E5%99%A8" target="_blank" rel="noopener">聚合器</a>，且支持移动设备<a href="https://zh.wikipedia.org/wiki/Android" target="_blank" rel="noopener">Android</a>和<a href="https://zh.wikipedia.org/wiki/IOS" target="_blank" rel="noopener">iOS</a>端。它以统一的布局为用户编排整理定制来自在线资源的新闻源，并可与他人分享。<a href="https://zh.wikipedia.org/wiki/Inoreader#cite_note-ferra-2" target="_blank" rel="noopener">[2]</a>由Innologica于2013年首次发布。　<!--维基百科--></p>
 <h2 id="获取喜马拉雅rss"><a href="#获取喜马拉雅rss" class="headerlink" title="获取喜马拉雅rss"></a>获取喜马拉雅rss</h2><p><img src="/imgs/inoreader_1.png" alt="inoreader_1.png"></p>
-<p>首先获取到播客专辑的网址</p>
-<p>，例如<a href="http://m.ximalaya.com/album/231594" target="_blank" rel="noopener">http://m.ximalaya.com/album/231594</a> 的rss地址是去掉’m.’后加上./xml:<a href="http://ximalaya.com/album/231594.xml" target="_blank" rel="noopener">http://ximalaya.com/album/231594.xml</a></p>
+<p>首先获取到播客专辑的网址，例如 <a href="http://m.ximalaya.com/album/231594" target="_blank" rel="noopener">http://m.ximalaya.com/album/231594</a> 的rss地址是去掉’m.’后加上./xml: <a href="http://ximalaya.com/album/231594.xml" target="_blank" rel="noopener">http://ximalaya.com/album/231594.xml</a></p>
 <p><img src="/imgs/inoreader_2.png" alt="inoreader_2.png"></p>
 <p>然后把获取到的链接添加到inoreader，就可以在inoreader订阅更新最近的节目了<img src="/imgs/inoreader_3.png" alt="inoreader_3.png"></p>
 <p>其他平台rss获取可以参考这篇文章：<a href="https://www.jinbo123.com/6280.html" target="_blank" rel="noopener">如何获取喜马拉雅、荔枝FM、考拉FM等中文播客RSS源</a></p>
@@ -785,7 +1197,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -806,7 +1218,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -827,7 +1243,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
