@@ -59,7 +59,7 @@ cd ./blog
 npm install
 ```
 
-在linux系统中安装插件需要给npm赋予权限：
+在linux系统中安装插件需要给npm赋予权限： <!-- more -->
 
 ```
 sudo chown -R $USER:$GROUP ~/.npm

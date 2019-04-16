@@ -25,7 +25,7 @@ s.send(b'exit')
 s.close()
 ```
 
-### tcp_server.py
+### tcp_server.py <!-- more -->
 
 ```python
 import socket,os
