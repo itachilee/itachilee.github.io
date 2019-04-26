@@ -52,7 +52,7 @@
 -->
 
 {% if theme.footer.powered.enable and theme.footer.theme.enable %}
-  <span class="post-meta-divider">|蜀ICP备19010899号</span>
+  <span class="post-meta-divider">|have a good day</span>
 {% endif %}
 <!--
 {% if theme.footer.theme.enable %}
