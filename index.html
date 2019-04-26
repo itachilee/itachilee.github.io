@@ -103,20 +103,20 @@
 
 
 
-  <meta name="description" content="welcome to my blog">
+  <meta name="description" content="生当如鹿">
 <meta property="og:type" content="website">
-<meta property="og:title" content="桃乐丝在此">
+<meta property="og:title" content="改命需要六颗硬币">
 <meta property="og:url" content="mijiu.group/index.html">
-<meta property="og:site_name" content="桃乐丝在此">
-<meta property="og:description" content="welcome to my blog">
+<meta property="og:site_name" content="改命需要六颗硬币">
+<meta property="og:description" content="生当如鹿">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="桃乐丝在此">
-<meta name="twitter:description" content="welcome to my blog">
+<meta name="twitter:title" content="改命需要六颗硬币">
+<meta name="twitter:description" content="生当如鹿">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="桃乐丝在此" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="改命需要六颗硬币" type="application/atom+xml">
 
 
 
@@ -132,7 +132,7 @@
   };
 </script>
 
-  <title>桃乐丝在此</title>
+  <title>改命需要六颗硬币</title>
   
 
 
@@ -193,7 +193,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">桃乐丝在此</span>
+        <span class="site-title">改命需要六颗硬币</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -353,16 +353,1819 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/02/python-tcp/">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/26/java容器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lee">
-      <meta itemprop="description" content="welcome to my blog">
+      <meta itemprop="description" content="生当如鹿">
       <meta itemprop="image" content="/images/38.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="桃乐丝在此">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/26/java容器/" class="post-title-link" itemprop="url">java容器</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 20:11:55 / Modified: 20:13:34" itemprop="dateCreated datePublished" datetime="2019-04-26T20:11:55+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一概览">一、概览</a><ul>
+<li><a href="#collection">Collection</a></li>
+<li><a href="#map">Map</a></li>
+</ul>
+</li>
+<li><a href="#二容器中的设计模式">二、容器中的设计模式</a><ul>
+<li><a href="#迭代器模式">迭代器模式</a></li>
+<li><a href="#适配器模式">适配器模式</a></li>
+</ul>
+</li>
+<li><a href="#三源码分析">三、源码分析</a><ul>
+<li><a href="#arraylist">ArrayList</a></li>
+<li><a href="#vector">Vector</a></li>
+<li><a href="#copyonwritearraylist">CopyOnWriteArrayList</a></li>
+<li><a href="#linkedlist">LinkedList</a></li>
+<li><a href="#hashmap">HashMap</a></li>
+<li><a href="#concurrenthashmap">ConcurrentHashMap</a></li>
+<li><a href="#linkedhashmap">LinkedHashMap</a></li>
+<li><a href="#weakhashmap">WeakHashMap</a></li>
+</ul>
+</li>
+<li><a href="#附录">附录</a></li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、概览"><a href="#一、概览" class="headerlink" title="一、概览"></a>一、概览</h1><p>容器主要包括 Collection 和 Map 两种，Collection 存储着对象的集合，而 Map 存储着键值对（两个对象）的映射表。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/26/java容器/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/26/计算机操作系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/26/计算机操作系统/" class="post-title-link" itemprop="url">计算机操作系统</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 20:05:28 / Modified: 20:07:52" itemprop="dateCreated datePublished" datetime="2019-04-26T20:05:28+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一概述">一、概述</a><ul>
+<li><a href="#基本特征">基本特征</a></li>
+<li><a href="#基本功能">基本功能</a></li>
+<li><a href="#系统调用">系统调用</a></li>
+<li><a href="#大内核和微内核">大内核和微内核</a></li>
+<li><a href="#中断分类">中断分类</a></li>
+</ul>
+</li>
+<li><a href="#二进程管理">二、进程管理</a><ul>
+<li><a href="#进程与线程">进程与线程</a></li>
+<li><a href="#进程状态的切换">进程状态的切换</a></li>
+<li><a href="#进程调度算法">进程调度算法</a></li>
+<li><a href="#进程同步">进程同步</a></li>
+<li><a href="#经典同步问题">经典同步问题</a></li>
+<li><a href="#进程通信">进程通信</a></li>
+</ul>
+</li>
+<li><a href="#三死锁">三、死锁</a><ul>
+<li><a href="#必要条件">必要条件</a></li>
+<li><a href="#处理方法">处理方法</a></li>
+<li><a href="#鸵鸟策略">鸵鸟策略</a></li>
+<li><a href="#死锁检测与死锁恢复">死锁检测与死锁恢复</a></li>
+<li><a href="#死锁预防">死锁预防</a></li>
+<li><a href="#死锁避免">死锁避免</a></li>
+</ul>
+</li>
+<li><a href="#四内存管理">四、内存管理</a><ul>
+<li><a href="#虚拟内存">虚拟内存</a></li>
+<li><a href="#分页系统地址映射">分页系统地址映射</a></li>
+<li><a href="#页面置换算法">页面置换算法</a></li>
+<li><a href="#分段">分段</a></li>
+<li><a href="#段页式">段页式</a></li>
+<li><a href="#分页与分段的比较">分页与分段的比较</a></li>
+</ul>
+</li>
+<li><a href="#五设备管理">五、设备管理</a><ul>
+<li><a href="#磁盘结构">磁盘结构</a></li>
+<li><a href="#磁盘调度算法">磁盘调度算法</a></li>
+</ul>
+</li>
+<li><a href="#六链接">六、链接</a><ul>
+<li><a href="#编译系统">编译系统</a></li>
+<li><a href="#静态链接">静态链接</a></li>
+<li><a href="#目标文件">目标文件</a></li>
+<li><a href="#动态链接">动态链接</a></li>
+</ul>
+</li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/26/计算机操作系统/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </h1></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/26/计算机网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/26/计算机网络/" class="post-title-link" itemprop="url">计算机操作网络</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 20:05:01 / Modified: 20:09:38" itemprop="dateCreated datePublished" datetime="2019-04-26T20:05:01+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一概述">一、概述</a><ul>
+<li><a href="#网络的网络">网络的网络</a></li>
+<li><a href="#isp">ISP</a></li>
+<li><a href="#主机之间的通信方式">主机之间的通信方式</a></li>
+<li><a href="#电路交换与分组交换">电路交换与分组交换</a></li>
+<li><a href="#时延">时延</a></li>
+<li><a href="#计算机网络体系结构">计算机网络体系结构</a></li>
+</ul>
+</li>
+<li><a href="#二物理层">二、物理层</a><ul>
+<li><a href="#通信方式">通信方式</a></li>
+<li><a href="#带通调制">带通调制</a></li>
+</ul>
+</li>
+<li><a href="#三数据链路层">三、数据链路层</a><ul>
+<li><a href="#基本问题">基本问题</a></li>
+<li><a href="#信道分类">信道分类</a></li>
+<li><a href="#信道复用技术">信道复用技术</a></li>
+<li><a href="#csmacd-协议">CSMA/CD 协议</a></li>
+<li><a href="#ppp-协议">PPP 协议</a></li>
+<li><a href="#mac-地址">MAC 地址</a></li>
+<li><a href="#局域网">局域网</a></li>
+<li><a href="#以太网">以太网</a></li>
+<li><a href="#交换机">交换机</a></li>
+<li><a href="#虚拟局域网">虚拟局域网</a></li>
+</ul>
+</li>
+<li><a href="#四网络层">四、网络层</a><ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#ip-数据报格式">IP 数据报格式</a></li>
+<li><a href="#ip-地址编址方式">IP 地址编址方式</a></li>
+<li><a href="#地址解析协议-arp">地址解析协议 ARP</a></li>
+<li><a href="#网际控制报文协议-icmp">网际控制报文协议 ICMP</a></li>
+<li><a href="#虚拟专用网-vpn">虚拟专用网 VPN</a></li>
+<li><a href="#网络地址转换-nat">网络地址转换 NAT</a></li>
+<li><a href="#路由器的结构">路由器的结构</a></li>
+<li><a href="#路由器分组转发流程">路由器分组转发流程</a></li>
+<li><a href="#路由选择协议">路由选择协议</a></li>
+</ul>
+</li>
+<li><a href="#五传输层">五、传输层</a><ul>
+<li><a href="#udp-和-tcp-的特点">UDP 和 TCP 的特点</a></li>
+<li><a href="#udp-首部格式">UDP 首部格式</a></li>
+<li><a href="#tcp-首部格式">TCP 首部格式</a></li>
+<li><a href="#tcp-的三次握手">TCP 的三次握手</a></li>
+<li><a href="#tcp-的四次挥手">TCP 的四次挥手</a></li>
+<li><a href="#tcp-可靠传输">TCP 可靠传输</a></li>
+<li><a href="#tcp-滑动窗口">TCP 滑动窗口</a></li>
+<li><a href="#tcp-流量控制">TCP 流量控制</a></li>
+<li><a href="#tcp-拥塞控制">TCP 拥塞控制</a></li>
+</ul>
+</li>
+<li><a href="#六应用层">六、应用层</a><ul>
+<li><a href="#域名系统">域名系统</a></li>
+<li><a href="#文件传送协议">文件传送协议</a></li>
+<li><a href="#动态主机配置协议">动态主机配置协议</a></li>
+<li><a href="#远程登录协议">远程登录协议</a></li>
+<li><a href="#电子邮件协议">电子邮件协议</a></li>
+<li><a href="#常用端口">常用端口</a></li>
+<li><a href="#web-页面请求过程">Web 页面请求过程</a></li>
+</ul>
+</li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/26/计算机网络/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </h1></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/26/java并发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/26/java并发/" class="post-title-link" itemprop="url">java并发</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 20:04:39 / Modified: 20:11:16" itemprop="dateCreated datePublished" datetime="2019-04-26T20:04:39+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一线程状态转换">一、线程状态转换</a><ul>
+<li><a href="#新建new">新建（New）</a></li>
+<li><a href="#可运行runnable">可运行（Runnable）</a></li>
+<li><a href="#阻塞blocking">阻塞（Blocking）</a></li>
+<li><a href="#无限期等待waiting">无限期等待（Waiting）</a></li>
+<li><a href="#限期等待timed-waiting">限期等待（Timed Waiting）</a></li>
+<li><a href="#死亡terminated">死亡（Terminated）</a></li>
+</ul>
+</li>
+<li><a href="#二使用线程">二、使用线程</a><ul>
+<li><a href="#实现-runnable-接口">实现 Runnable 接口</a></li>
+<li><a href="#实现-callable-接口">实现 Callable 接口</a></li>
+<li><a href="#继承-thread-类">继承 Thread 类</a></li>
+<li><a href="#实现接口-vs-继承-thread">实现接口 VS 继承 Thread</a></li>
+</ul>
+</li>
+<li><a href="#三基础线程机制">三、基础线程机制</a><ul>
+<li><a href="#executor">Executor</a></li>
+<li><a href="#daemon">Daemon</a></li>
+<li><a href="#sleep">sleep()</a></li>
+<li><a href="#yield">yield()</a></li>
+</ul>
+</li>
+<li><a href="#四中断">四、中断</a><ul>
+<li><a href="#interruptedexception">InterruptedException</a></li>
+<li><a href="#interrupted">interrupted()</a></li>
+<li><a href="#executor-的中断操作">Executor 的中断操作</a></li>
+</ul>
+</li>
+<li><a href="#五互斥同步">五、互斥同步</a><ul>
+<li><a href="#synchronized">synchronized</a></li>
+<li><a href="#reentrantlock">ReentrantLock</a></li>
+<li><a href="#比较">比较</a></li>
+<li><a href="#使用选择">使用选择</a></li>
+</ul>
+</li>
+<li><a href="#六线程之间的协作">六、线程之间的协作</a><ul>
+<li><a href="#join">join()</a></li>
+<li><a href="#wait-notify-notifyall">wait() notify() notifyAll()</a></li>
+<li><a href="#await-signal-signalall">await() signal() signalAll()</a></li>
+</ul>
+</li>
+<li><a href="#七juc---aqs">七、J.U.C - AQS</a><ul>
+<li><a href="#countdownlatch">CountdownLatch</a></li>
+<li><a href="#cyclicbarrier">CyclicBarrier</a></li>
+<li><a href="#semaphore">Semaphore</a></li>
+</ul>
+</li>
+<li><a href="#八juc---其它组件">八、J.U.C - 其它组件</a><ul>
+<li><a href="#futuretask">FutureTask</a></li>
+<li><a href="#blockingqueue">BlockingQueue</a></li>
+<li><a href="#forkjoin">ForkJoin</a></li>
+</ul>
+</li>
+<li><a href="#九线程不安全示例">九、线程不安全示例</a></li>
+<li><a href="#十java-内存模型">十、Java 内存模型</a><ul>
+<li><a href="#主内存与工作内存">主内存与工作内存</a></li>
+<li><a href="#内存间交互操作">内存间交互操作</a></li>
+<li><a href="#内存模型三大特性">内存模型三大特性</a></li>
+<li><a href="#先行发生原则">先行发生原则</a></li>
+</ul>
+</li>
+<li><a href="#十一线程安全">十一、线程安全</a><ul>
+<li><a href="#不可变">不可变</a></li>
+<li><a href="#互斥同步">互斥同步</a></li>
+<li><a href="#非阻塞同步">非阻塞同步</a></li>
+<li><a href="#无同步方案">无同步方案</a></li>
+</ul>
+</li>
+<li><a href="#十二锁优化">十二、锁优化</a><ul>
+<li><a href="#自旋锁">自旋锁</a></li>
+<li><a href="#锁消除">锁消除</a></li>
+<li><a href="#锁粗化">锁粗化</a></li>
+<li><a href="#轻量级锁">轻量级锁</a></li>
+<li><a href="#偏向锁">偏向锁</a></li>
+</ul>
+</li>
+<li><a href="#十三多线程开发良好的实践">十三、多线程开发良好的实践</a></li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、线程状态转换"><a href="#一、线程状态转换" class="headerlink" title="一、线程状态转换"></a>一、线程状态转换
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/26/java并发/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </h1></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/26/java虚拟机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/26/java虚拟机/" class="post-title-link" itemprop="url">java虚拟机</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 20:01:32 / Modified: 20:03:24" itemprop="dateCreated datePublished" datetime="2019-04-26T20:01:32+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一运行时数据区域">一、运行时数据区域</a><ul>
+<li><a href="#程序计数器">程序计数器</a></li>
+<li><a href="#java-虚拟机栈">Java 虚拟机栈</a></li>
+<li><a href="#本地方法栈">本地方法栈</a></li>
+<li><a href="#堆">堆</a></li>
+<li><a href="#方法区">方法区</a></li>
+<li><a href="#运行时常量池">运行时常量池</a></li>
+<li><a href="#直接内存">直接内存</a></li>
+</ul>
+</li>
+<li><a href="#二垃圾收集">二、垃圾收集</a><ul>
+<li><a href="#判断一个对象是否可被回收">判断一个对象是否可被回收</a></li>
+<li><a href="#引用类型">引用类型</a></li>
+<li><a href="#垃圾收集算法">垃圾收集算法</a></li>
+<li><a href="#垃圾收集器">垃圾收集器</a></li>
+</ul>
+</li>
+<li><a href="#三内存分配与回收策略">三、内存分配与回收策略</a><ul>
+<li><a href="#minor-gc-和-full-gc">Minor GC 和 Full GC</a></li>
+<li><a href="#内存分配策略">内存分配策略</a></li>
+<li><a href="#full-gc-的触发条件">Full GC 的触发条件</a></li>
+</ul>
+</li>
+<li><a href="#四类加载机制">四、类加载机制</a><ul>
+<li><a href="#类的生命周期">类的生命周期</a></li>
+<li><a href="#类加载过程">类加载过程</a></li>
+<li><a href="#类初始化时机">类初始化时机</a></li>
+<li><a href="#类与类加载器">类与类加载器</a></li>
+<li><a href="#类加载器分类">类加载器分类</a></li>
+<li><a href="#双亲委派模型">双亲委派模型</a></li>
+<li><a href="#自定义类加载器实现">自定义类加载器实现</a></li>
+</ul>
+</li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、运行时数据区域"><a href="#一、运行时数据区域" class="headerlink" title="一、运行时数据区域"></a>一、运行时数据区域
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/26/java虚拟机/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </h1></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/26/java基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/26/java基础/" class="post-title-link" itemprop="url">java基础</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 19:58:24 / Modified: 20:00:45" itemprop="dateCreated datePublished" datetime="2019-04-26T19:58:24+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一数据类型">一、数据类型</a><ul>
+<li><a href="#包装类型">包装类型</a></li>
+<li><a href="#缓存池">缓存池</a></li>
+</ul>
+</li>
+<li><a href="#二string">二、String</a><ul>
+<li><a href="#概览">概览</a></li>
+<li><a href="#不可变的好处">不可变的好处</a></li>
+<li><a href="#string,-stringbuffer-and-stringbuilder">String, StringBuffer and StringBuilder</a></li>
+<li><a href="#string-pool">String Pool</a></li>
+<li><a href="#new-string&quot;abc&quot;">new String(“abc”)</a></li>
+</ul>
+</li>
+<li><a href="#三运算">三、运算</a><ul>
+<li><a href="#参数传递">参数传递</a></li>
+<li><a href="#float-与-double">float 与 double</a></li>
+<li><a href="#隐式类型转换">隐式类型转换</a></li>
+<li><a href="#switch">switch</a></li>
+</ul>
+</li>
+<li><a href="#四继承">四、继承</a><ul>
+<li><a href="#访问权限">访问权限</a></li>
+<li><a href="#抽象类与接口">抽象类与接口</a></li>
+<li><a href="#super">super</a></li>
+<li><a href="#重写与重载">重写与重载</a></li>
+</ul>
+</li>
+<li><a href="#五object-通用方法">五、Object 通用方法</a><ul>
+<li><a href="#概览">概览</a></li>
+<li><a href="#equals">equals()</a></li>
+<li><a href="#hashcode">hashCode()</a></li>
+<li><a href="#tostring">toString()</a></li>
+<li><a href="#clone">clone()</a></li>
+</ul>
+</li>
+<li><a href="#六关键字">六、关键字</a><ul>
+<li><a href="#final">final</a></li>
+<li><a href="#static">static</a></li>
+</ul>
+</li>
+<li><a href="#七反射">七、反射</a></li>
+<li><a href="#八异常">八、异常</a></li>
+<li><a href="#九泛型">九、泛型</a></li>
+<li><a href="#十注解">十、注解</a></li>
+<li><a href="#十一特性">十一、特性</a><ul>
+<li><a href="#java-各版本的新特性">Java 各版本的新特性</a></li>
+<li><a href="#java-与-c-的区别">Java 与 C++ 的区别</a></li>
+<li><a href="#jre-or-jdk">JRE or JDK</a></li>
+</ul>
+</li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、数据类型"><a href="#一、数据类型" class="headerlink" title="一、数据类型"></a>一、数据类型
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/26/java基础/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </h1></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/26/linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/26/linux/" class="post-title-link" itemprop="url">linux</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 19:52:22 / Modified: 19:56:20" itemprop="dateCreated datePublished" datetime="2019-04-26T19:52:22+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机操作系统/" itemprop="url" rel="index"><span itemprop="name">计算机操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一常用操作以及概念">一、常用操作以及概念</a><ul>
+<li><a href="#快捷键">快捷键</a></li>
+<li><a href="#求助">求助</a></li>
+<li><a href="#关机">关机</a></li>
+<li><a href="#path">PATH</a></li>
+<li><a href="#sudo">sudo</a></li>
+<li><a href="#包管理工具">包管理工具</a></li>
+<li><a href="#发行版">发行版</a></li>
+<li><a href="#vim-三个模式">VIM 三个模式</a></li>
+<li><a href="#gnu">GNU</a></li>
+<li><a href="#开源协议">开源协议</a></li>
+</ul>
+</li>
+<li><a href="#二磁盘">二、磁盘</a><ul>
+<li><a href="#磁盘接口">磁盘接口</a></li>
+<li><a href="#磁盘的文件名">磁盘的文件名</a></li>
+</ul>
+</li>
+<li><a href="#三分区">三、分区</a><ul>
+<li><a href="#分区表">分区表</a></li>
+<li><a href="#开机检测程序">开机检测程序</a></li>
+</ul>
+</li>
+<li><a href="#四文件系统">四、文件系统</a><ul>
+<li><a href="#分区与文件系统">分区与文件系统</a></li>
+<li><a href="#组成">组成</a></li>
+<li><a href="#文件读取">文件读取</a></li>
+<li><a href="#磁盘碎片">磁盘碎片</a></li>
+<li><a href="#block">block</a></li>
+<li><a href="#inode">inode</a></li>
+<li><a href="#目录">目录</a></li>
+<li><a href="#日志">日志</a></li>
+<li><a href="#挂载">挂载</a></li>
+<li><a href="#目录配置">目录配置</a></li>
+</ul>
+</li>
+<li><a href="#五文件">五、文件</a><ul>
+<li><a href="#文件属性">文件属性</a></li>
+<li><a href="#文件与目录的基本操作">文件与目录的基本操作</a></li>
+<li><a href="#修改权限">修改权限</a></li>
+<li><a href="#文件默认权限">文件默认权限</a></li>
+<li><a href="#目录的权限">目录的权限</a></li>
+<li><a href="#链接">链接</a></li>
+<li><a href="#获取文件内容">获取文件内容</a></li>
+<li><a href="#指令与文件搜索">指令与文件搜索</a></li>
+</ul>
+</li>
+<li><a href="#六压缩与打包">六、压缩与打包</a><ul>
+<li><a href="#压缩文件名">压缩文件名</a></li>
+<li><a href="#压缩指令">压缩指令</a></li>
+<li><a href="#打包">打包</a></li>
+</ul>
+</li>
+<li><a href="#七bash">七、Bash</a><ul>
+<li><a href="#特性">特性</a></li>
+<li><a href="#变量操作">变量操作</a></li>
+<li><a href="#指令搜索顺序">指令搜索顺序</a></li>
+<li><a href="#数据流重定向">数据流重定向</a></li>
+</ul>
+</li>
+<li><a href="#八管道指令">八、管道指令</a><ul>
+<li><a href="#提取指令">提取指令</a></li>
+<li><a href="#排序指令">排序指令</a></li>
+<li><a href="#双向输出重定向">双向输出重定向</a></li>
+<li><a href="#字符转换指令">字符转换指令</a></li>
+<li><a href="#分区指令">分区指令</a></li>
+</ul>
+</li>
+<li><a href="#九正则表达式">九、正则表达式</a><ul>
+<li><a href="#grep">grep</a></li>
+<li><a href="#printf">printf</a></li>
+<li><a href="#awk">awk</a></li>
+</ul>
+</li>
+<li><a href="#十进程管理">十、进程管理</a><ul>
+<li><a href="#查看进程">查看进程</a></li>
+<li><a href="#进程状态">进程状态</a></li>
+<li><a href="#sigchld">SIGCHLD</a></li>
+<li><a href="#wait">wait()</a></li>
+<li><a href="#waitpid">waitpid()</a></li>
+<li><a href="#孤儿进程">孤儿进程</a></li>
+<li><a href="#僵尸进程">僵尸进程</a></li>
+</ul>
+</li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、常用操作以及概念"><a href="#一、常用操作以及概念" class="headerlink" title="一、常用操作以及概念"></a>一、常用操作以及概念
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/26/linux/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </h1></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/25/re正则表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/25/re正则表达式/" class="post-title-link" itemprop="url">re正则表达式</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-25 20:36:37 / Modified: 20:43:11" itemprop="dateCreated datePublished" datetime="2019-04-25T20:36:37+08:00">2019-04-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/re/" itemprop="url" rel="index"><span itemprop="name">re</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li><a href="#一概述">一、概述</a></li>
+<li><a href="#二匹配单个字符">二、匹配单个字符</a></li>
+<li><a href="#三匹配一组字符">三、匹配一组字符</a></li>
+<li><a href="#四使用元字符">四、使用元字符</a></li>
+<li><a href="#五重复匹配">五、重复匹配</a></li>
+<li><a href="#六位置匹配">六、位置匹配</a></li>
+<li><a href="#七使用子表达式">七、使用子表达式</a></li>
+<li><a href="#八回溯引用">八、回溯引用</a></li>
+<li><a href="#九前后查找">九、前后查找</a></li>
+<li><a href="#十嵌入条件">十、嵌入条件</a></li>
+<li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
+</li>
+</ul>
+<h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>正则表达式用于文本内容的查找和替换。</p>
+<p>正则表达式内置于其它语言或者软件产品中，它本身不是一种语言或者软件。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/25/re正则表达式/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+	
+	<div>
+		
+	</div>
+	<div>
+      
+	</div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/02/python-tcp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lee">
+      <meta itemprop="description" content="生当如鹿">
+      <meta itemprop="image" content="/images/38.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="改命需要六颗硬币">
     </span>
 
     
@@ -415,7 +2218,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-16 20:39:00" itemprop="dateModified" datetime="2019-04-16T20:39:00+08:00">2019-04-16</time>
+                <time title="Modified: 2019-04-24 12:05:10" itemprop="dateModified" datetime="2019-04-24T12:05:10+08:00">2019-04-24</time>
               
             
           </span>
@@ -543,12 +2346,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lee">
-      <meta itemprop="description" content="welcome to my blog">
+      <meta itemprop="description" content="生当如鹿">
       <meta itemprop="image" content="/images/38.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="桃乐丝在此">
+      <meta itemprop="name" content="改命需要六颗硬币">
     </span>
 
     
@@ -601,7 +2404,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-16 20:36:16" itemprop="dateModified" datetime="2019-04-16T20:36:16+08:00">2019-04-16</time>
+                <time title="Modified: 2019-04-24 12:05:10" itemprop="dateModified" datetime="2019-04-24T12:05:10+08:00">2019-04-24</time>
               
             
           </span>
@@ -713,389 +2516,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/04/01/史上最好用的rss订阅器—inoreader/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lee">
-      <meta itemprop="description" content="welcome to my blog">
-      <meta itemprop="image" content="/images/38.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="桃乐丝在此">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/01/史上最好用的rss订阅器—inoreader/" class="post-title-link" itemprop="url">史上最好用的rss订阅器—inoreader</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-01 22:38:56 / Modified: 23:17:05" itemprop="dateCreated datePublished" datetime="2019-04-01T22:38:56+08:00">2019-04-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://www.inoreader.com/" target="_blank" rel="noopener">inoreader</a>是保加利亚一款基于网络内容和云服务的<a href="https://zh.wikipedia.org/wiki/RSS" target="_blank" rel="noopener">RSS</a><a href="https://zh.wikipedia.org/wiki/%E8%81%9A%E5%90%88%E5%99%A8" target="_blank" rel="noopener">聚合器</a>，且支持移动设备<a href="https://zh.wikipedia.org/wiki/Android" target="_blank" rel="noopener">Android</a>和<a href="https://zh.wikipedia.org/wiki/IOS" target="_blank" rel="noopener">iOS</a>端。它以统一的布局为用户编排整理定制来自在线资源的新闻源，并可与他人分享。<a href="https://zh.wikipedia.org/wiki/Inoreader#cite_note-ferra-2" target="_blank" rel="noopener">[2]</a>由Innologica于2013年首次发布。　<!--维基百科--></p>
-<h2 id="获取喜马拉雅rss"><a href="#获取喜马拉雅rss" class="headerlink" title="获取喜马拉雅rss"></a>获取喜马拉雅rss</h2><p><img src="/imgs/inoreader_1.png" alt="inoreader_1.png"></p>
-<p>首先获取到播客专辑的网址，例如 <a href="http://m.ximalaya.com/album/231594" target="_blank" rel="noopener">http://m.ximalaya.com/album/231594</a> 的rss地址是去掉’m.’后加上./xml: <a href="http://ximalaya.com/album/231594.xml" target="_blank" rel="noopener">http://ximalaya.com/album/231594.xml</a></p>
-<p><img src="/imgs/inoreader_2.png" alt="inoreader_2.png"></p>
-<p>然后把获取到的链接添加到inoreader，就可以在inoreader订阅更新最近的节目了<img src="/imgs/inoreader_3.png" alt="inoreader_3.png"></p>
-<p>其他平台rss获取可以参考这篇文章：<a href="https://www.jinbo123.com/6280.html" target="_blank" rel="noopener">如何获取喜马拉雅、荔枝FM、考拉FM等中文播客RSS源</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-		
-	</div>
-	<div>
-      
-	</div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="mijiu.group/2019/03/31/利用hexo搭建个人博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lee">
-      <meta itemprop="description" content="welcome to my blog">
-      <meta itemprop="image" content="/images/38.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="桃乐丝在此">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/31/利用hexo搭建个人博客/" class="post-title-link" itemprop="url">利用hexo搭建个人博客</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-31 21:15:40" itemprop="dateCreated datePublished" datetime="2019-03-31T21:15:40+08:00">2019-03-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-16 20:38:07" itemprop="dateModified" datetime="2019-04-16T20:38:07+08:00">2019-04-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo-categories/" itemprop="url" rel="index"><span itemprop="name">hexo_categories</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><p>Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。先安装nodejs,windows系统的百度下载安装包安装<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">nodejs</a>,linux:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure>
-<p>检查安装是否成功：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>教程分三个部分:</p>
-<ul>
-<li>第一部分：hexo的初级搭建以及常见错误的解决方法</li>
-<li>第二部分：hexo的基本配置，更换主题，以及相关美化</li>
-<li>第三部分：hexo添加各种功能，包括搜索的SEO，阅读量统计，访问量统计和评论系统等</li>
-</ul>
-<h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h2><p>hexo的初级搭建还有部署到github page上，以及个人域名的绑定。</p>
-<ol>
-<li>安装Hexo</li>
-<li>发布文章</li>
-</ol>
-<h3 id="1-安装Hexo"><a href="#1-安装Hexo" class="headerlink" title="1.安装Hexo"></a>1.安装Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>安装完成以后使用　hexo -v查看是否安装成功</p>
-</blockquote>
-<p>然后创建博客</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-<p>上面的blog就博客的根文件，名字可以自己随便取一个。创建成功以后进入blog文件夹,安装npm插件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>在linux系统中安装插件需要给npm赋予权限：
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/31/利用hexo搭建个人博客/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-	
-	<div>
-		
-	</div>
-	<div>
-      
-	</div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1127,7 +2554,7 @@
               <img class="site-author-image" itemprop="image" src="/images/38.png" alt="lee">
             
               <p class="site-author-name" itemprop="name">lee</p>
-              <div class="site-description motion-element" itemprop="description">welcome to my blog</div>
+              <div class="site-description motion-element" itemprop="description">生当如鹿</div>
           </div>
 
           
@@ -1137,7 +2564,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1162,7 +2589,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1187,7 +2622,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1296,7 +2741,7 @@
 -->
 
 
-  <span class="post-meta-divider">|</span>
+  <span class="post-meta-divider">|蜀ICP备19010899号</span>
 
 <!--
 
