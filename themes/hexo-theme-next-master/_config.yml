@@ -154,7 +154,7 @@ exturl: false
 #baidu_site_verification:
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
-baidu_push: false
+baidu_push: true
 
 
 # ---------------------------------------------------------------
@@ -189,8 +189,8 @@ menu_settings:
 
 # Schemes
 #scheme: Muse
-scheme: Mist
-#scheme: Pisces
+#scheme: Mist
+scheme: Pisces
 #scheme: Gemini
 
 
@@ -210,7 +210,7 @@ site_state: true
 social:
   GitHub: https://github.com/itachilee || github
   E-Mail: mailto:itachilee9527@gmail.com || envelope
-  qq-mail: 3050155685@qq.com  || qq
+  #qq-mail: mailto:3050155685@qq.com  || qq
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/itachilee9527 || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -241,11 +241,11 @@ avatar:
   # You can also use other linking images.
   url: /images/38.png
   # If true, the avatar would be dispalyed in circle.
-  rounded: false
+  rounded: true
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
   opacity: 1
   # If true, the avatar would be rotated with the cursor.
-  rotated: false
+  rotated: true
 
 # Table Of Contents in the Sidebar
 toc:
@@ -361,9 +361,9 @@ codeblock:
 
 # Wechat Subscriber
 wechat_subscriber:
-  enable: false
-  #qcode: /path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg
-  #description: e.g. subscribe to my blog by scanning my public wechat account
+  enable: true
+  qcode: /images/wechatcode.png  #e.g. /uploads/wechat-qcode.jpg
+  description: you can help me better
 
 # Reward (Donate)
 reward_settings:
@@ -1006,7 +1006,7 @@ pace_theme: pace-theme-center-radar
 # Canvas-nest
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest
 canvas_nest:
-  enable: true
+  enable: false
   onmobile: true # display on mobile or not
   color: "0,0,255" # RGB values, use ',' to separate
   opacity: 0.5 # the opacity of line: 0~1
