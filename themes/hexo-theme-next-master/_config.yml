@@ -1218,6 +1218,13 @@ vendors:
   # disqusjs_css: //cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css
   disqusjs_js:
   disqusjs_css:
+  
+  #添加在这里
+# Disqus 
+  disqus:
+   enable: true
+   shortname: mijiu    #your name
+   count: true
 
 # Assets
 css: css
