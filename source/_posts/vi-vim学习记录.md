@@ -9,7 +9,7 @@ vim 键盘图：
 
 <div align="center"> <img src="http://pqiwvcvln.bkt.clouddn.com/vi-vim-cheat-sheet-sch.gif" width="600"/> </div><br>
 
-## vi/vim 按键说明
+## vi/vim 按键说明<!--more-->
 
 ### 一般模式可用的光标移动、复制粘贴、搜索替换等
 
