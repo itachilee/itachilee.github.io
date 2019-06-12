@@ -14,13 +14,22 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
 
@@ -77,7 +86,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -108,7 +117,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux">
 <meta property="og:url" content="mijiu.group/2019/04/26/linux/index.html">
-<meta property="og:site_name" content="改命需要六颗硬币">
+<meta property="og:site_name" content="需当砥砺奋进">
 <meta property="og:description" content="一、常用操作以及概念 快捷键 求助 关机 PATH sudo 包管理工具 发行版 VIM 三个模式 GNU 开源协议   二、磁盘 磁盘接口 磁盘的文件名   三、分区 分区表 开机检测程序   四、文件系统 分区与文件系统 组成 文件读取 磁盘碎片 block inode 目录 日志 挂载 目录配置   五、文件 文件属性 文件与目录的基本操作 修改权限 文件默认权限 目录的权限 链接 获取文">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pqiwvcvln.bkt.clouddn.com/5942debd-fc00-477a-b390-7c5692cc8070.jpg">
@@ -136,7 +145,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="改命需要六颗硬币" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="需当砥砺奋进" type="application/atom+xml">
 
 
 
@@ -152,11 +161,22 @@
   };
 </script>
 
-  <title>linux | 改命需要六颗硬币</title>
+  <title>linux | 需当砥砺奋进</title>
   
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-139540306-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-139540306-1');
+    }
+  </script>
 
 
 
@@ -212,7 +232,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">改命需要六颗硬币</span>
+        <span class="site-title">需当砥砺奋进</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -327,9 +347,6 @@
   
 
   
-    
-
-  
 
   
 </nav>
@@ -346,12 +363,12 @@
     
 
 	
-		<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
-		</script>
-	
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -381,7 +398,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="改命需要六颗硬币">
+      <meta itemprop="name" content="需当砥砺奋进">
     </span>
 
     
@@ -389,11 +406,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux
+          <h2 class="post-title" itemprop="name headline">linux
 
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -1211,6 +1228,12 @@
       
 	</div>
     
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechatcode.png" alt="lee wechat" style="width: 200px; max-width: 100%;">
+  <div>you can help me better</div>
+</div>
+
+    
 
     
       
@@ -1319,7 +1342,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1352,7 +1375,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1387,7 +1412,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1429,17 +1462,6 @@
                     
                   
                   <a href="mailto:itachilee9527@gmail.com" title="E-Mail &rarr; mailto:itachilee9527@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="/3050155685@qq.com" title="qq-mail &rarr; 3050155685@qq.com"><i class="fa fa-fw fa-qq"></i>qq-mail</a>
                 </span>
               
             </div>
@@ -1491,7 +1513,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">蜀ICP备19010899号 </a>&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -1513,11 +1535,11 @@
 -->
 
 
-  <span class="post-meta-divider">|蜀ICP备19010899号</span>
+  <span class="post-meta-divider">|have a good day</span>
 
 <!--
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
 
 -->
 
@@ -1572,12 +1594,6 @@
 
 
 
-  
-    
-    
-  
-  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
 
 
 
@@ -1613,8 +1629,9 @@
   
 
 
-  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+  <script src="/js/src/affix.js?v=7.0.1"></script>
 
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
 
 
 
@@ -1658,6 +1675,16 @@
   
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
 
   
 
