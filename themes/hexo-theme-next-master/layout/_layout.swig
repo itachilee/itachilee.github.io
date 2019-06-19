@@ -124,4 +124,8 @@
   {% include '_third-party/chatra.swig' %}
   {% include '_third-party/tidio.swig' %}
 </body>
+
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
 </html>
